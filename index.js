@@ -22,8 +22,13 @@ async function fetchComments() {
     const commentsDiv = document.getElementById("comments");
 
     slicedData.forEach((comment) => {
-      let slicedBody = `if (${comment.body.length} >= 40) {
-      return ${comment.body}...};`;
+      let slicedBody = "";
+
+      if (comment.body.length >= 40) {
+        slicedBody = comment.body.slice(0, 40) + "...";
+      } else {
+        slicedBody = comment.body;
+      }
       // 4. 여기에 slice 메서드를 활용하여
       //    comment의 body의 길이가 40 이상일 때
       //    0번째부터 39번째 문자를 복사하고 맨 뒤에 "..."을 붙인 문자열을
